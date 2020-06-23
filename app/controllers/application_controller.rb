@@ -45,7 +45,7 @@ class ApplicationController < Sinatra::Base
 
     if user && user.authenticate(params[:password])
       #a user can be defined from the data base by matching it with the params hash then start the conditional statment
-      #if the user id matches with the salted and hashed user id given 
+      #if the user id matches with the salted and hashed user id given
       #then redirect them to the account page
       #otherwise direct them to the failure page
       session[:user_id] = user.id
