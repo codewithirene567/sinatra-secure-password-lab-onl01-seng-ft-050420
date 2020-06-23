@@ -1,7 +1,4 @@
 class Users < ActiveRecord::Migration[5.1]
-  def up
-  end
-
-  def down
+  def change
   end
 end
