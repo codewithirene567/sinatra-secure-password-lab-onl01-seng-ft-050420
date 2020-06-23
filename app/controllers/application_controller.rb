@@ -17,7 +17,16 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/signup" do
-    #your code here
+    if params[:username]=="" || params[:password]==""
+      redirect to '/failure' #if you give me no password or username then redirect to faliure
+    end
+    user = User.new(:username => params[:username], :password => params[:password])
+
+    if user.save
+      redirect "/login"
+    else
+      redirect "/failure"
+    end
 
   end
 
@@ -32,7 +41,18 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    ##your code here
+    user= User.find_by(:username => params[:username])
+
+    if user && user.authenticate(params[:password])
+      #a user can be defined from the data base by matching it with the params hash then start the conditional statment
+      #if the user id matches with the salted and hashed user id given
+      #then redirect them to the account page
+      #otherwise direct them to the failure page
+      session[:user_id] = user.id
+      redirect "/account"
+    else
+      redirect "/failure"
+    end
   end
 
   get "/failure" do
