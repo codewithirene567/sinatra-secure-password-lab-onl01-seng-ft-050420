@@ -17,7 +17,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/signup" do
-    #your code here
+    user = 
+    if
+    else
+    end
 
   end
 
